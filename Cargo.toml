@@ -4,10 +4,10 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-glam = "0.30.9"
-kira = "0.11.0"
-mlua = { version = "0.9", features = ["lua54"] }
-taffy = "0.9.2"
-wgpu = "27.0.1"
-winit = "0.30.12"
-pollster = "0.3"
+glam = "0.30.9" # Matemática
+kira = "0.11.0" # Áudio
+mlua = { version = "0.9", features = ["lua54"] } # Scripting
+taffy = "0.9.2" # UI
+wgpu = "27.0.1" # Renderização
+winit = "0.30.12" # Input
+pollster = "0.3" # Dependência do wgpu
