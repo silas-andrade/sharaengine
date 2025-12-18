@@ -155,6 +155,7 @@ Além de funcionar como plataforma experimental para sistemas de jogos, o projet
 
 ## 📄 Licença
 
-Este projeto está licenciado sob os termos da **GPL-3.0**.  
+Este projeto está licenciado sob os termos da **MIT License**.  
 Consulte o arquivo [LICENSE](LICENSE) para mais detalhes.
+
 
