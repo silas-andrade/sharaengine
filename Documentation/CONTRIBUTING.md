@@ -1,10 +1,12 @@
 # Contributing
 
-Obrigado pelo interesse em contribuir com Shara Engine! Aqui vão algumas diretrizes iniciais:
+Obrigado por contribuir com o Shara Engine! Seguem diretrizes iniciais para um fluxo
+saudável de contribuições:
 
-- Por favor abra issues para bugs e para propostas de features.
-- Fork, crie uma branch (`feat/x` ou `fix/x`), e envie PR para a branch `main`.
-- Execute `cargo fmt` e `cargo clippy` antes de enviar PR.
-- Inclua testes quando possível.
+- Abra issues para bugs e propostas de features.
+- Fork, crie uma branch (`feat/...` ou `fix/...`) e envie um PR para `main`.
+- Execute `cargo fmt` e `cargo clippy` antes de abrir o PR.
+- Execute `npm run format` para formatar a documentação quando aplicável.
+- Inclua testes ao implementar novas funcionalidades.
 
-> Este arquivo é um stub inicial — contribuições para aprimorar o processo são bem-vindas.
+> Este arquivo é um ponto de partida — melhorias são bem-vindas via PR.

@@ -1,8 +1,9 @@
 # 🚀 Shara Engine
 
-**Shara Engine** é uma game engine 2D em desenvolvimento, escrita em Rust e com integração com Lua para scripting.
+**Shara Engine** é um motor de jogos 2D em desenvolvimento, escrito em Rust com
+integração a Lua para scripting.
 
-> A documentação completa foi movida para a pasta `Documentation/`.
+> A documentação completa está em `Documentation/`.
 
 - 📖 Visão geral: `Documentation/Overview.md`
 - 🗂️ Tarefas & roadmap: `Documentation/TASKS.md`
@@ -11,13 +12,17 @@
 
 ## Status
 
-- CI: ![CI](https://github.com/silas-andrade/sharaengine/actions/workflows/ci.yml/badge.svg) (executa format, clippy, build, test)
-- Docs: ![Pages](https://github.com/silas-andrade/sharaengine/actions/workflows/gh-pages.yml/badge.svg) — https://silas-andrade.github.io/sharaengine/ (deploy automático via workflow)
-- Formatação/Lints: configurados em `rust-toolchain.toml` / `rustfmt.toml` / `clippy.toml` e docs com Prettier + markdownlint (ver `Documentation/SETUP.md` para instruções locais)
+- CI: ![CI](https://github.com/silas-andrade/sharaengine/actions/workflows/ci.yml/badge.svg)
+  (formatação, clippy, build, teste)
+- Docs: ![Pages](https://github.com/silas-andrade/sharaengine/actions/workflows/gh-pages.yml/badge.svg)
+  — https://silas-andrade.github.io/sharaengine/ (deploy automático)
+- Formatação/Lints: `rustfmt`, `clippy` e docs com Prettier + markdownlint
+  (veja `Documentation/SETUP.md` para instruções locais)
 
 ---
 
 ## Licença
+
 Este projeto está licenciado sob a **MIT License** — veja `LICENSE`.
 
 ---

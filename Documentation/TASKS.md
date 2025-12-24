@@ -85,7 +85,7 @@
 - [ ] Documentação da API Lua
 - [ ] Tutorial: “Seu Primeiro Jogo”
 - [ ] Exemplos práticos (Pong, plataforma simples)
-- [ ] Pipeline de documentação (publicar docs no GitHub Pages)
+- [ ] Pipeline de documentação (publicar docs no GitHub Pages; validar deploy)
 
 ## Releases
 - [ ] Versão 0.1
