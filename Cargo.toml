@@ -2,6 +2,14 @@
 name = "sharaengine"
 version = "0.1.0"
 edition = "2024"
+authors = ["Your Name <you@example.com>"]
+description = "Shara Engine — motor de jogos 2D em Rust com integração Lua"
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/yourname/sharaengine"
+repository = "https://github.com/yourname/sharaengine"
+keywords = ["game-engine","rust","lua","2d"]
+
 
 [dependencies]
 glam = "0.30.9" # Matemática

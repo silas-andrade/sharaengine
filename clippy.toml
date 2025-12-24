@@ -1,0 +1,6 @@
+# Clippy configuration - keep as placeholder for custom checks
+# You can add lint levels like:
+# lint_name = "deny"
+
+# Example: Deny `unwrap` usage if you prefer
+# allow(clippy::unwrap_used) = false
