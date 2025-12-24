@@ -90,7 +90,12 @@ if git diff --staged --quiet; then
   echo "No changelog changes to commit."
 else
   git commit -m "chore(changelog): release $VERSION"
-  git push origin HEAD
+  # Push using token-authenticated URL when available (supports forks/permissions)
+  if [ -n "${GITHUB_TOKEN:-}" ]; then
+    git push "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD
+  else
+    git push origin HEAD
+  fi
 fi
 
 # Print release notes to stdout (Unreleased content)

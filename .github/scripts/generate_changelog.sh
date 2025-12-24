@@ -49,8 +49,12 @@ if ! diff -q "${CHANGELOG_FILE}" "${CHANGELOG_FILE}.tmp" >/dev/null 2>&1; then
   git config user.email "github-actions[bot]@users.noreply.github.com"
   git add "${CHANGELOG_FILE}"
   git commit -m "chore(changelog): update from commits"
-  # Use token to push
-  git push origin HEAD
+  # Push using token-authenticated URL when available (supports forks/permissions)
+  if [ -n "${GITHUB_TOKEN:-}" ]; then
+    git push "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD
+  else
+    git push origin HEAD
+  fi
   echo "Changelog updated and pushed."
 else
   rm "${CHANGELOG_FILE}.tmp"

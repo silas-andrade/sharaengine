@@ -54,7 +54,12 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git tag -a $TAG -m "Release $TAG"
-          git push origin $TAG
+          # Push tag using token-authenticated URL when available (supports forks/permissions)
+          if [ -n "${GITHUB_TOKEN:-}" ]; then
+            git push "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" $TAG
+          else
+            git push origin $TAG
+          fi
 
       - name: Create GitHub release
         uses: ncipollo/release-action@v1
@@ -73,11 +78,25 @@ jobs:
           mkdir -p public
           cp -r Documentation/* public/ || true
           cp -r target/doc public/api || true
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+
+      - name: Verify GitHub Pages configuration
+        uses: actions/github-script@v6
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
+          script: |
+            const res = await github.rest.repos.getPages({ owner: context.repo.owner, repo: context.repo.repo });
+            core.info(`GitHub Pages status: ${res.data.status || 'unknown'}`);
+            core.info(`GitHub Pages source: ${res.data.source?.branch || 'unknown'}`);
+            if (res.status !== 200) {
+              core.setFailed('GitHub Pages is not configured or not accessible for this repository. Ensure Pages is enabled and the workflow has `pages: write` permission.');
+            }
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: ./public
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v1
 
       - name: Publish crate (if token provided)
         if: ${{ secrets.CRATES_IO_TOKEN != '' }}

@@ -62,8 +62,12 @@ jobs:
         if: steps.commit.outputs.committed == 'true'
         run: |
           set -e
-          # Try pushing to current branch
-          git push origin HEAD || echo "push_failed"
+          # Try pushing to current branch using token-authenticated URL when available
+          if [ -n "${GITHUB_TOKEN:-}" ]; then
+            git push "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD || echo "push_failed"
+          else
+            git push origin HEAD || echo "push_failed"
+          fi
 
       - name: Create PR if push failed or if this is a forked PR
         if: steps.commit.outputs.committed == 'true'

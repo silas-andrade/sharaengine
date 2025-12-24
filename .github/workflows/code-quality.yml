@@ -54,5 +54,10 @@ jobs:
           if ! git diff --quiet; then
             git add -A
             git commit -m "chore(format): apply autoformat by code-quality workflow" || true
-            git push origin HEAD || echo "push failed"
+            # Push using token-authenticated URL when available
+            if [ -n "${GITHUB_TOKEN:-}" ]; then
+              git push "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD || echo "push failed"
+            else
+              git push origin HEAD || echo "push failed"
+            fi
           fi
