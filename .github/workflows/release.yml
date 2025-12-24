@@ -65,8 +65,8 @@ jobs:
 
       - name: Publish docs to gh-pages
         uses: actions/checkout@v4
-      - name: Build docs
-        run: cargo doc --no-deps --document-private-items
+      - name: Build docs (no-default-features)
+        run: cargo doc --no-deps --document-private-items --no-default-features
       - name: Prepare site
         run: |
           rm -rf public

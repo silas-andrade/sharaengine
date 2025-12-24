@@ -11,8 +11,9 @@
 - [X] Lints de documentação (Prettier + markdownlint)
 - [X] Auto-format workflow (auto-format.yml)- [ ] ISSUE templates, PR template, CODEOWNERS
 - [ ] Dependabot (dependabot.yml)
-- [ ] Commitlint (conventional commits check)
-- [ ] Release workflow (publish crate / create release)
+- [X] Commitlint (conventional commits check)
+- [ ] Husky commit-msg local hook (optional)
+- [X] release-please (automated release PRs / changelog)- [ ] Release workflow (publish crate / create release)
 
 ## Engine Core
 - [ ] Módulo `engine-core`
@@ -86,7 +87,8 @@
 - [ ] Tutorial: “Seu Primeiro Jogo”
 - [ ] Exemplos práticos (Pong, plataforma simples)
 - [ ] Pipeline de documentação (publicar docs no GitHub Pages; validar deploy)
-
+- [ ] Tornar dependências pesadas opcionais (features) — feito, validar builds
+- [ ] Criar job de quality/scan (cargo-audit, autoformat) — criado (code-quality.yml)
 ## Releases
 - [ ] Versão 0.1
 - [X] Changelog automático (workflow criado)

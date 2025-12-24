@@ -33,11 +33,17 @@ Para desenvolver localmente e executar os checks, instale o toolchain Rust (via 
 
    - Formatar (Rust): `cargo fmt --all`
    - Rodar clippy: `cargo clippy --all-targets --all-features -- -D warnings`
-   - Build: `cargo build --release`
-   - Testes: `cargo test`
+   - Build (sem features pesadas): `cargo build --no-default-features`
+   - Testes (sem features pesadas): `cargo test --no-default-features`
+   - Build com todas as features (requer deps do sistema): `cargo build --all-features`
    - Formatar docs com Prettier: `npm run format`
    - Verificar formatação: `npm run format:check`
    - Lint Markdown: `npm run lint:md`
+
+   Observação: para gerar a documentação localmente sem precisar de
+   dependências nativas, execute: `cargo doc --no-default-features`.
+   Se precisar construir com `--all-features`, instale as dependências do sistema
+   necessárias (ex.: `libasound2-dev`, `pkg-config` no Ubuntu).
 
 6. Formatação automática via CI
 

@@ -21,3 +21,9 @@ commit (via workflow `Update Changelog`).
   `examples/simple.rs`.
 
 (Entradas futuras serão agregadas automaticamente.)
+
+---
+
+Note: This project uses **Conventional Commits** and `release-please` to
+automate release PRs and changelog generation. Use `npm run changelog` locally
+or rely on the release workflow to produce clean changelog sections.

@@ -45,8 +45,8 @@ jobs:
         with:
           toolchain: stable
 
-      - name: Build docs (cargo doc)
-        run: cargo doc --no-deps --document-private-items
+      - name: Build docs (cargo doc, no-default-features)
+        run: cargo doc --no-deps --document-private-items --no-default-features
 
       - name: Prepare site
         run: |

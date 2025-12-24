@@ -8,7 +8,7 @@ fmt:
 	cargo clippy --all-targets --all-features -- -D warnings || true
 
 docs:
-	npm run format && cargo doc --no-deps
+	npm run format && cargo doc --no-deps --document-private-items --no-default-features
 
 test:
 	cargo test

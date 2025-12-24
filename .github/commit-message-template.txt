@@ -1,0 +1,12 @@
+<type>(<scope>): <short description>
+
+[optional body]
+
+Footer: BREAKING CHANGE: <description>
+
+Examples:
+- feat(renderer): add sprite batching
+- fix(input): handle mouse wheel
+- chore(ci): update workflow
+
+Use Conventional Commits: https://www.conventionalcommits.org/
