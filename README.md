@@ -31,5 +31,6 @@ Este projeto está licenciado sob a **MIT License** — veja `LICENSE`.
 
 ---
 
-Se quiser ajudar, abra uma issue ou envie um PR. Obrigado! :rocket
+Se quiser ajudar, abra uma issue ou envie um PR. Obrigado! :rocket:
+
 
