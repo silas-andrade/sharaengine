@@ -1,0 +1,23 @@
+site_name: SharaEngine
+site_url: https://silas-andrade.github.io/sharaengine/
+
+theme:
+  name: material
+  features:
+    - navigation.instant
+    - navigation.sections
+    - navigation.expand
+    - toc.integrate
+    - search.highlight
+
+nav:
+  - Home: index.md
+  - Overview: overview.md
+  - Getting Started: getting-started.md
+  - API Reference: api/
+
+markdown_extensions:
+  - toc:
+      permalink: true
+  - tables
+  - fenced_code
