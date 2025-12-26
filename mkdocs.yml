@@ -1,6 +1,9 @@
 site_name: SharaEngine
 site_url: https://silas-andrade.github.io/sharaengine/
 
+docs_dir: Documentation
+site_dir: site
+
 theme:
   name: material
   features:
