@@ -1,0 +1,30 @@
+name: Commitlint (enforce)
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  commitlint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: |
+          if [ -f package-lock.json ]; then npm ci; else npm install; fi
+          npm i -D @commitlint/config-conventional @commitlint/cli husky
+
+      - name: Run commitlint on PR range
+        run: |
+          git fetch origin main --depth=1 || true
+          npx commitlint --from=origin/main --to=HEAD

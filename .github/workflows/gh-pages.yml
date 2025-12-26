@@ -1,0 +1,75 @@
+name: Deploy Docs
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install JS dev deps
+        run: |
+          if [ -f package-lock.json ]; then
+            npm ci
+          else
+            npm install
+          fi
+
+      - name: Format docs (Prettier)
+        run: |
+          # Run Prettier to auto-format docs; do not fail the job if formatting
+          # produces changes (we do not want deploy to block).
+          npm run format || true
+
+      - name: Lint Markdown (non-fatal)
+        run: npm run lint:md || true
+
+      - name: Setup Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+
+      - name: Build docs (cargo doc, no-default-features)
+        run: cargo doc --no-deps --document-private-items --no-default-features
+
+      - name: Prepare site
+        run: |
+          rm -rf public
+          mkdir -p public
+          cp -r Documentation/* public/ || true
+          cp -r target/doc public/api || true
+
+      - name: Verify GitHub Pages configuration
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const res = await github.rest.repos.getPages({ owner: context.repo.owner, repo: context.repo.repo });
+            core.info(`GitHub Pages status: ${res.data.status || 'unknown'}`);
+            core.info(`GitHub Pages source: ${res.data.source?.branch || 'unknown'}`);
+            if (res.status !== 200) {
+              core.setFailed('GitHub Pages is not configured or not accessible for this repository. Ensure Pages is enabled and the workflow has `pages: write` permission.');
+            }
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: ./public
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v1

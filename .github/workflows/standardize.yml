@@ -1,0 +1,68 @@
+name: Standardize Project
+
+on:
+  workflow_dispatch:
+  pull_request:
+    types: [opened, synchronize]
+
+permissions:
+  contents: write
+
+jobs:
+  standardize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install JS dev deps
+        run: |
+          if [ -f package-lock.json ]; then npm ci; else npm install; fi
+
+      - name: Run Prettier
+        run: npm run format
+
+      - name: Run markdownlint fixes (non-fatal)
+        run: npm run lint:md || true
+
+      - name: Setup Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          components: rustfmt, clippy
+
+      - name: Run rustfmt
+        run: cargo fmt --all
+
+      - name: Run cargo fix (passive)
+        run: cargo fix --allow-dirty --allow-staged || true
+
+      - name: Commit standards
+        id: commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if ! git diff --quiet; then
+            git add -A
+            git commit -m "chore(standardize): apply formatting and fixes" || true
+            echo "committed=true" >> $GITHUB_OUTPUT
+          else
+            echo "committed=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Push or open PR
+        if: steps.commit.outputs.committed == 'true'
+        uses: peter-evans/create-pull-request@v4
+        with:
+          title: "chore(standardize): apply formatting and fixes"
+          body: "This PR applies automatic formatting and lightweight fixes across the repository (Prettier, rustfmt, cargo fix)."
+          branch: auto/standardize
+          base: ${{ github.head_ref || github.ref_name }}
+          labels: automated, standardize
