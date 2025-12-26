@@ -15,8 +15,14 @@ theme:
 
 nav:
   - Home: index.md
-  - Overview: overview.md
-  - Getting Started: getting-started.md
+  - Overview: Overview.md
+  - Tutorial: TUTORIAL.md
+  - Setup: SETUP.md
+  - Project:
+      - Tasks & Roadmap: TASKS.md
+      - Changelog: CHANGELOG.md
+      - Contributing: CONTRIBUTING.md
+      - Code of Conduct: CODE_OF_CONDUCT.md
   - API Reference: api/
 
 markdown_extensions:
