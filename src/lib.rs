@@ -7,11 +7,11 @@ pub use engine_core::Engine;
 
 #[cfg(test)]
 mod tests {
-  use super::*;
+    use super::*;
 
-  #[test]
-  fn engine_new_works() {
-    let e = Engine::new();
-    assert_eq!(e.name, "Shara Engine");
-  }
+    #[test]
+    fn engine_new_works() {
+        let e = Engine::new();
+        assert_eq!(e.name, "Shara Engine");
+    }
 }

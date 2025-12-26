@@ -9,6 +9,6 @@ Este é um tutorial mínimo para começar com o Shara Engine (versão inicial/st
 cargo run --example simple
 ```
 
-O exemplo inicializa o subsistema de scripting (stub) e executa o motor (stub).
-Use este exemplo como ponto de partida para um tutorial completo (Pong,
-plataforma simples) a ser adicionado em breve.
+O exemplo inicializa o subsistema de scripting (stub) e executa o motor (stub). Use este exemplo
+como ponto de partida para um tutorial completo (Pong, plataforma simples) a ser adicionado em
+breve.

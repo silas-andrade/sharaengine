@@ -1,7 +1,6 @@
 # Código de Conduta
 
-Seja bem-vindo! Nosso objetivo é manter uma comunidade acolhedora e
-respeitosa.
+Seja bem-vindo! Nosso objetivo é manter uma comunidade acolhedora e respeitosa.
 
 - Seja respeitoso em todas as interações.
 - Evite linguagem ofensiva e ataques pessoais.

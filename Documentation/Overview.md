@@ -1,8 +1,7 @@
 # Shara Engine — Visão Geral
 
-Shara Engine é um motor de jogos 2D em desenvolvimento, com foco em
-performance, modularidade e integração com Lua para permitir criação rápida
-de jogos.
+Shara Engine é um motor de jogos 2D em desenvolvimento, com foco em performance, modularidade e
+integração com Lua para permitir criação rápida de jogos.
 
 ## Objetivos
 
