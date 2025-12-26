@@ -2,7 +2,7 @@
   "name": "sharaengine-lint",
   "private": true,
   "devDependencies": {
-    "prettier": "^2.8.8",
+    "prettier": "^3.7.4",
     "markdownlint-cli": "^0.34.0",
     "husky": "^8.0.0",
     "@commitlint/cli": "^17.6.0",
