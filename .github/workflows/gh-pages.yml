@@ -11,53 +11,37 @@ permissions:
   id-token: write
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
         with:
-          node-version: '18'
+          python-version: '3.x'
 
-      - name: Install JS dev deps
+      - name: Install MkDocs
         run: |
-          if [ -f package-lock.json ]; then
-            npm ci
-          else
-            npm install
-          fi
+          pip install mkdocs-material
 
-      - name: Format docs (Prettier)
-        run: npm run format || true
-
-      - name: Lint Markdown (non-fatal)
-        run: npm run lint:md || true
-
-      - name: Setup Rust
-        uses: actions-rs/toolchain@v1
-        with:
-          toolchain: stable
-
-      - name: Build docs
+      - name: Build Rust docs
         run: cargo doc --no-deps --document-private-items --no-default-features
 
-      - name: Prepare site
+      - name: Build MkDocs site
+        run: mkdocs build
+
+      - name: Merge Rust API into site
         run: |
-          rm -rf public
-          mkdir -p public
-          cp -r Documentation/* public/ || true
-          cp -r target/doc public/api || true
+          mkdir -p site/api
+          cp -r target/doc/* site/api
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./public
+          path: site
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4

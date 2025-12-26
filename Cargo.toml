@@ -24,6 +24,7 @@ wgpu = { version = "28.0.0", optional = false } # Renderização (native)
 winit = { version = "0.30.12", optional = false } # Input (native)
 pollster = { version = "0.3", optional = false } # Dependência do wgpu
 
+
 [features]
 # Do not enable heavy features by default. Consumers can enable what's needed.
 default = []
